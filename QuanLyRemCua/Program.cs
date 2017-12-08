@@ -1,9 +1,5 @@
 ﻿using SimpleCMenu.Menu;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QuanLyRemCua
 {
@@ -12,14 +8,8 @@ namespace QuanLyRemCua
         static void exit() {
             Environment.Exit(69);
         }
-        static void Main(string[] args)
-        {
-            Curtain cur1 = new Curtain("Manh sao", "MS1", "Trang", "Manh Sao Ngang", 22000, 2);
-            Curtain cur2 = new Curtain("Manh sao", "MS2", "Den", "Manh Sao Doc", 22000, 2);
-            Curtain cur3 = new Curtain("Manh sao", "MS3", "Deo co mau", "Manh Sao 3D", 99000, 2);
-            Database.curtains.Add(cur1);
-            Database.curtains.Add(cur2);
-            Database.curtains.Add(cur3);
+        static void Main(string[] args) {
+            Database.UpdateDataset();
             Console.Clear();
             ConsoleMenu menu = new ConsoleMenu();
             string headerText =       "  ____                      _                                                " +
@@ -32,13 +22,15 @@ namespace QuanLyRemCua
                 Environment.NewLine + "                            |___/                                     ";
             menu.Header = headerText;          
             menu.SubTitle = "\n-----------------------------------MENU---------------------------------------";
-            menu.addMenuItem(1, "Xem tat ca man cua", Interface.showAllCurtain);
-            menu.addMenuItem(2, "Tim kiem man cua", Interface.findCurtain);
-            menu.addMenuItem(3, "Sua thong tin man cua", Interface.modifyCurtain);
-            menu.addMenuItem(4, "Xoa man cua", Interface.deleteCurtain);
+            menu.addMenuItem(1, "Them man cua", Interface.addCurtain);
+            menu.addMenuItem(2, "Xem tat ca man cua", Interface.showAllCurtain);
+            menu.addMenuItem(3, "Tim kiem man cua", Interface.findCurtain);
+            menu.addMenuItem(4, "Sua thong tin man cua", Interface.modifyCurtain);
+            menu.addMenuItem(5, "Xoa man cua", Interface.deleteCurtain);
             menu.addMenuItem(0, "Thoat",Program.exit);
             menu.showMenu();
             Console.ReadKey();
+            Database.UpdateDatabase();
         }
     }
 }

@@ -32,7 +32,56 @@ namespace QuanLyRemCua
             Console.Write("Bam phim bat ki de ve man hinh chinh.");
             Console.ReadKey();
         }
+        public static void addCurtain()
+        {
+            Edit:
+            try
+            {
+                Console.Write("Nhap vao ten man :  ");
+                string name = Console.ReadLine();
+                Console.Write("Nhap vao ma man :  ");
+                string code = Console.ReadLine();
+                Console.Write("Nhap vao mau sac cua man :  ");
+                string color = Console.ReadLine();
+                Console.Write("Nhap vao loai man :  ");
+                string type = Console.ReadLine();
+                Console.Write("Nhap vao gia man :  ");
+                string price = Console.ReadLine();
+                if (price != "")
+                {
+                    float tempPrice = float.Parse(price);
+                    price = tempPrice.ToString();
+                }
+                else {
+                    throw new InvalidCastException();
+                }
+                Console.Write("Nhap vao so luong man :  ");
+                string amount = Console.ReadLine();
+                if (amount != "")
+                {
+                    float tempAmount = float.Parse(amount);
+                    amount = tempAmount.ToString();
+                }
+                else {
+                    throw new InvalidCastException();
+                }
+                if (name == "" || code == "" || color == "" || type == "") {
+                    throw new InvalidCastException();
+                }
+                Database.curtains.Add(new Curtain(name, code, color, type, float.Parse(price), int.Parse(amount)));
+            }
+            catch
+            {
+                Console.Write("Gia tri khong hop le.Bam phim bat ki de nhap lai hoac bam 0 de huy");
+                ConsoleKey key = Console.ReadKey().Key;
+                if (key == ConsoleKey.D0 || key == ConsoleKey.NumPad0) {
+                    return;
+                } 
+                Console.Clear();
+                goto Edit;
+            }
 
+        }
         public static void findCurtain()
         {
             Console.Clear();
