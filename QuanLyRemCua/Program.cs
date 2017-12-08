@@ -6,6 +6,7 @@ namespace QuanLyRemCua
     class Program
     {
         static void exit() {
+            Database.UpdateDatabase();
             Environment.Exit(69);
         }
         static void Main(string[] args) {
@@ -29,8 +30,7 @@ namespace QuanLyRemCua
             menu.addMenuItem(5, "Xoa man cua", Interface.deleteCurtain);
             menu.addMenuItem(0, "Thoat",Program.exit);
             menu.showMenu();
-            Console.ReadKey();
-            Database.UpdateDatabase();
+            Console.ReadKey();            
         }
     }
 }
